@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Добавить читателя</title>
+</head>
+<body>
+    <form th:method="POST" th:action="@{/people/new}" th:object="${person}">
+        <label for="name">Введите ФИО: </label>
+        <input type="text" th:field="*{fullName}" personid="name">
+        <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name errors</div>
+        <br/>
+        <label for="age">Введите год рождения: </label>
+        <input type="text" th:field="*{birthYear}" personid="age">
+        <div style="color:red" th:if="${#fields.hasErrors('birthYear')}" th:errors="*{fullName}">BirthYear errors</div>
+        <br/>
+        <input type="submit" value="Создать">
+    </form>
+    <br/>
+    <a href="/">На главную</a>
+</body>
+</html>
