@@ -2,6 +2,7 @@ package org.example.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class Person {
 
     @Column(name = "birthyear")
     @Max(value = 2025, message = "Год рождения должен быть не более 2025")
+    @Min(value = 1925, message = "Год рождения должен быть не раньше 1925")
     private int birthYear;
 
     @OneToMany(mappedBy = "reader")

@@ -1,7 +1,7 @@
-package org.example.util;
+package org.example.validator;
 
 import org.example.model.Person;
-import org.example.services.PeopleService;
+import org.example.service.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
@@ -24,6 +24,6 @@ public class PersonValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         Person person = (Person) target;
-        if (peopleService.findByFullName(person.getFullName()).isPresent()) errors.rejectValue("fullName", "error.fullName", "Читатель с таким именем уже существует");
+        if (peopleService.isNameAlreadyTaken(person.getFullName())) errors.rejectValue("fullName", "error.fullName", "Читатель с таким менем уже существует");
     }
 }

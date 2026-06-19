@@ -1,9 +1,11 @@
-package org.example.services;
+package org.example.service;
 
+import org.example.exception.BookNotFoundException;
+import org.example.exception.PersonNotFoundException;
 import org.example.model.Book;
 import org.example.model.Person;
-import org.example.repositories.BookRepository;
-import org.example.repositories.PeopleRepository;
+import org.example.repository.BookRepository;
+import org.example.repository.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +43,10 @@ public class BookService {
 
     @Transactional
     public void update(Book book) {
-        bookRepository.save(book);
+        Book existingBook = bookRepository.findById(book.getBookid()).orElseThrow(() -> new BookNotFoundException("Книга не найдена!"));
+        existingBook.setName(book.getName());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setYear(book.getYear());
     }
 
     @Transactional
@@ -50,16 +55,17 @@ public class BookService {
     }
 
     public Person bookOwner (int bookid) {
-        return bookRepository.findById(bookid).get().getReader();
+        return bookRepository.findById(bookid).orElseThrow(() -> new BookNotFoundException("Книга не айдена")).getReader();
     }
 
     @Transactional
     public void assignBook(int bookid, int personid) {
-        bookRepository.findById(bookid).get().setReader(peopleRepository.findById(personid).get());
+        bookRepository.findById(bookid).orElseThrow(() -> new BookNotFoundException("Книга не найдена"))
+                .setReader(peopleRepository.findById(personid).orElseThrow(() -> new PersonNotFoundException("Читатель не найден")));
     }
 
     @Transactional
     public void releaseBook(int bookid) {
-        bookRepository.findById(bookid).get().setReader(null);
+        bookRepository.findById(bookid).orElseThrow(() -> new BookNotFoundException("Книга не найдена")).setReader(null);
     }
 }

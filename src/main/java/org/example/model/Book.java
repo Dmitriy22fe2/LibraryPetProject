@@ -26,7 +26,9 @@ public class Book {
     private int year;
 
     @ManyToOne
-    @JoinColumn(name = "personid", referencedColumnName = "personid")
+    @JoinColumn(name = "personid", referencedColumnName = "personid", foreignKey = @ForeignKey(
+            foreignKeyDefinition = "FOREIGN KEY (personid) " + "REFERENCES person(personid) ON DELETE SET NULL"
+    ))
     private Person reader;
 
     public Book(int bookid, String name, String author, int year) {

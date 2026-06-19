@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  postgres-library-pet-project:
+    image: postgres:16
+    container_name: library_pet_project-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: library_pet_project_db
+    ports:
+      - "5491:5432"

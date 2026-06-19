@@ -1,4 +1,4 @@
-package org.example.configuration;
+package org.example.config;
 
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.ServletContext;

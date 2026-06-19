@@ -1,13 +1,12 @@
-package org.example.services;
+package org.example.service;
 
 import org.example.model.Person;
-import org.example.repositories.PeopleRepository;
+import org.example.repository.PeopleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional(readOnly = true)
@@ -27,9 +26,7 @@ public class PeopleService {
         return peopleRepository.findById(id).orElse(null);
     }
 
-    public Optional<Person> findByFullName(String fullName) {
-        return peopleRepository.findByFullName(fullName);
-    }
+    public boolean isNameAlreadyTaken(String fullName) { return peopleRepository.existsByFullName(fullName); }
 
     @Transactional
     public void save(Person person) {

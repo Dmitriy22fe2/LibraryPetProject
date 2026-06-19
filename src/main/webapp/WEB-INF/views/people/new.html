@@ -7,12 +7,12 @@
 <body>
     <form th:method="POST" th:action="@{/people/new}" th:object="${person}">
         <label for="name">Введите ФИО: </label>
-        <input type="text" th:field="*{fullName}" personid="name">
+        <input type="text" th:field="*{fullName}" id="name">
         <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">Name errors</div>
         <br/>
         <label for="age">Введите год рождения: </label>
-        <input type="text" th:field="*{birthYear}" personid="age">
-        <div style="color:red" th:if="${#fields.hasErrors('birthYear')}" th:errors="*{fullName}">BirthYear errors</div>
+        <input type="text" th:field="*{birthYear}" id="age">
+        <div style="color:red" th:if="${#fields.hasErrors('birthYear')}" th:errors="*{birthYear}">BirthYear errors</div>
         <br/>
         <input type="submit" value="Создать">
     </form>

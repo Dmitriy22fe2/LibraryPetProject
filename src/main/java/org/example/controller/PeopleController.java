@@ -2,9 +2,9 @@ package org.example.controller;
 
 import jakarta.validation.Valid;
 import org.example.model.Person;
-import org.example.services.BookService;
-import org.example.services.PeopleService;
-import org.example.util.PersonValidator;
+import org.example.service.BookService;
+import org.example.service.PeopleService;
+import org.example.validator.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
