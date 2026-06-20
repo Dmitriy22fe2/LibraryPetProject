@@ -32,9 +32,10 @@ docker-compose up -d
 
 1. Установите плагин SmartTomcat через настройки среды разработки.
 2. Добавьте новую конфигурацию запуска (Run/Debug Configurations -> SmartTomcat).
-3. Укажите путь к локально установленному Apache Tomcat.
-4. В поле Deployment directory выберите папку `src/main/webapp`.
-5. Запустите сервер Tomcat. Приложение будет доступно по адресу: http://localhost:8080/
+3. В поле Tomcat Server укажите путь к папке со скачанным Apache Tomcat.
+4. В поле Deployment directory выберите папку `src/main/webapp`. (важно: именно `webapp`, а не `web`)
+5. В поле Context path оставьте только `/`.
+6. Примените конфигурацию и запустите сервер Tomcat. Приложение будет доступно по адресу: http://localhost:8080/
 
 ## Навигация (Точки входа)
 
