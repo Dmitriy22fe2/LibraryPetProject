@@ -6,8 +6,8 @@
 </head>
 <body>
   <p th:text="${book.getName() + ', ' + book.getAuthor() + ', ' + book.getYear()}">Book</p>
-  <div th:if="${bookOwner} == null" >
-      <p th:text="${'Эта кгига свободна. Кому назначить ее?'}"></p>
+  <div th:if="${bookOwner} == null and ${!#lists.isEmpty(people)}" >
+      <p th:text="${'Эта книга свободна. Кому назначить ее?'}"></p>
       <form th:method="PATCH" th:action="@{/books/{id}(id=${book.getBookid()})}" th:object="${person}">
           <label for="select">Выберите человека </label>
           <select th:object="${person}" th:field="*{personid}" id="select">
@@ -17,6 +17,9 @@
           </select>
           <input type="submit" value="Назначить книгу">
       </form>
+  </div>
+  <div th:if="${#lists.isEmpty(people)}" >
+      <p th:text="${'Некому назначить книгу. Добавьте читателей.'}"></p>
   </div>
   <div th:if="${bookOwner} != null">
       <p th:text="${'Книга сейчас у: ' + bookOwner.getFullName()}"></p>
